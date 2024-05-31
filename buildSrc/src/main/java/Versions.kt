@@ -1,14 +1,14 @@
 object Apps{
-    const val compileSdk = 33
-    const val buildTools = "33.0.0"
+    const val compileSdk = 34
+    const val buildTools = "34.0.0"
     const val minSdk = 24
-    const val targetSdk = 33
+    const val targetSdk = 34
     const val APP_NAME = "dev.kkjang.lotto"
     const val ANDROID_JUNIT_RUNNER = "androidx.support.test.runner.AndroidJUnitRunner"
 }
 
 object Versions{
-    const val KOTLIN_PLGUIN = "1.8.10"
+    const val KOTLIN_PLUGIN = "1.8.10"
     const val JAVA_PLUGIN = "1.4.0"
     const val ANDROID_APT = "1.8"
 
@@ -174,7 +174,7 @@ object Java {
 }
 
 object Kotlin {
-    const val PLGUIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN_PLGUIN}"
+    const val PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN_PLUGIN}"
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KTX_COROUTINES}"
     const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KTX_COROUTINES}"
 
@@ -325,14 +325,14 @@ object DataStore {
 
 object Compose {
     const val BOM = "androidx.compose:compose-bom:${Versions.COMPOSE_BOM}"
-    const val MATERIAL3 = "androidx.compose.material3:material3"
-    const val MATERIAL = "androidx.compose.material:material"
-    const val FOUNDATION = "androidx.compose.foundation:foundation"
-    const val UI = "androidx.compose.ui:ui"
+    const val MATERIAL3 = "androidx.compose.material3:material3:1.2.1"
+    const val MATERIAL = "androidx.compose.material:material:1.6.7"
+    const val FOUNDATION = "androidx.compose.foundation:foundation:1.6.7"
+    const val UI = "androidx.compose.ui:ui:1.6.7"
     const val ACTIVITY = "androidx.activity:activity-compose:${Versions.COMPOSE_ACTIVITY}"
     const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.COMPOSE_VIEWMODEL}"
-    const val LIVEDATA = "androidx.compose.runtime:runtime-livedata"
-    const val RXJAVA2 = "androidx.compose.runtime:runtime-rxjava2"
+    const val LIVEDATA = "androidx.compose.runtime:runtime-livedata:1.6.7"
+    const val RXJAVA2 = "androidx.compose.runtime:runtime-rxjava2:1.6.7"
 
     // 컴포저블 미리보기
     const val PREVIEW = "androidx.compose.ui:ui-tooling-preview:1.6.7"
