@@ -193,7 +193,7 @@ dependencies {
     implementation(Firebase.FIREBASE_ANALYTICS_KTX)
 
     implementation(Dagger.HILT)
-    ksp(Dagger.COMPILER)
+    kapt(Dagger.COMPILER)
 
     implementation(OkHttp.OKHTTP_3)
     implementation(OkHttp.OKHTTP_3_URLCONNECTION)

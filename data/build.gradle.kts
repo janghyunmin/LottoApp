@@ -1,7 +1,9 @@
 plugins {
     id ("com.android.library")
     id ("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    id ("com.google.devtools.ksp")
+    id ("com.google.dagger.hilt.android")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -35,6 +37,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation ("androidx.core:core-ktx:1.13.1")
@@ -62,7 +68,9 @@ dependencies {
     implementation(Kotlin.COROUTINES_CORE)
     implementation(Kotlin.COROUTINES)
 
-    implementation(Dagger.HILT)
+//    implementation(Dagger.HILT)
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     implementation(Room.RUNTIME)
 
