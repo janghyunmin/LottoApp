@@ -11,6 +11,7 @@ plugins {
     id("com.google.firebase.appdistribution")
 
     id("de.mannodermaus.android-junit5")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -183,9 +184,6 @@ dependencies {
 
     implementation(RxJava2.ANDROID)
     implementation(RxJava2.BINDING)
-
-    implementation(Room.RUNTIME)
-    kapt(Room.COMPILER)
 
     implementation(platform(Firebase.FIREBASE_BOM))
     implementation(Firebase.MESSAGING)

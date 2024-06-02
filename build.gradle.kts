@@ -8,19 +8,22 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath ("com.android.tools.build:gradle:8.0.2")
         classpath (Kotlin.PLUGIN) // 코틀린 플러그인 적용
         classpath (Google.GOOGLE_GMS)
         classpath(Libs.ANDROID_APT)
+        classpath ("com.android.tools.build:gradle:8.0.2")
         classpath ("com.google.dagger:hilt-android-gradle-plugin:${Versions.DAGGER_HILT}")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION_SAFE}")
-
         classpath("com.google.android.gms:oss-licenses-plugin:0.10.6")
         classpath("com.google.firebase.appdistribution:com.google.firebase.appdistribution.gradle.plugin:4.0.1")
-
         classpath("de.mannodermaus.gradle.plugins:android-junit5:1.8.2.0")
     }
 }
+
+plugins {
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+}
+
 allprojects {
     repositories {
         google()

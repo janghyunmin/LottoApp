@@ -58,8 +58,8 @@ object Versions{
     const val DAGGER_PROCESSOR = "2.15"
     const val DAGGER_COMPILER = "1.0.0"
 
-    const val ROOM_VERSION = "2.4.2"
-    const val ROOM_RUNTIME = "2.4.2"
+    const val ROOM_VERSION = "2.6.1"
+    const val ROOM_RUNTIME = "2.6.1"
     const val ROOM_TESTING = "2.4.2"
     const val ROOM_PAGING = "2.5.0-alpha01"
 
@@ -217,7 +217,7 @@ object Navigation {
 
 object Room {
     // room
-    const val RUNTIME = "androidx.room:room-runtime:${Versions.ROOM_VERSION}"
+    const val RUNTIME = "androidx.room:room-runtime:${Versions.ROOM_RUNTIME}"
     const val COMPILER = "androidx.room:room-compiler:${Versions.ROOM_VERSION}"
 }
 
