@@ -1,6 +1,7 @@
 plugins {
     id ("com.android.library")
     id ("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -44,4 +45,36 @@ dependencies {
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation(project(":domain"))
+
+    implementation(AndroidX.CORE)
+    implementation(AndroidX.WORK)
+    implementation(AndroidX.LIFECYCLE_VIEWMODEL)
+    implementation(AndroidX.LIFECYCLE_LIVEDATA)
+    implementation(AndroidX.CORE)
+
+    implementation(OkHttp.OKHTTP_3)
+    implementation(OkHttp.OKHTTP_3_URLCONNECTION)
+    implementation(OkHttp.OKHTTP_3_INTERCEPTOR)
+
+    implementation(Retrofit.RETROFIT_2_ADAPTER)
+    implementation(Retrofit.RETROFIT_2_GSON)
+
+    implementation(Kotlin.COROUTINES_CORE)
+    implementation(Kotlin.COROUTINES)
+
+    implementation(Dagger.HILT)
+
+    implementation(Room.RUNTIME)
+
+    implementation(SQLITE.SQLITE)
+    implementation(SQLITE.SQLITE_CIPHER)
+
+    implementation(Google.GSON)
+
+    implementation(Jetpack.PAGING)
+
+    coreLibraryDesugaring(Android.DESUGARING)
+
+    implementation(DataStore.DATA_STORE)
+    implementation(DataStore.DATA_STORE_CORE)
 }
