@@ -38,8 +38,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lotto"
         tools:targetApi="31">
+        <!--     android:name=".splash.SplashActivity"   -->
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Lotto">
@@ -51,11 +52,11 @@
         </activity>
 
 
-        <activity
-            android:name=".main.MainActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".main.MainActivity"-->
+<!--            android:configChanges="screenSize|smallestScreenSize|screenLayout"-->
+<!--            android:exported="false"-->
+<!--            android:screenOrientation="portrait" />-->
 
     </application>
 

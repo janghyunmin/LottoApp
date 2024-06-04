@@ -188,6 +188,7 @@ dependencies {
     implementation(platform(Firebase.FIREBASE_BOM))
     implementation(Firebase.MESSAGING)
     implementation(Firebase.DATABASE)
+    implementation(Firebase.DATABASE_KTX)
     implementation(Firebase.CORE)
 //    implementation(Firebase.FIREBASE_ANALYTICS)
     implementation(Firebase.FIREBASE_ANALYTICS_KTX)

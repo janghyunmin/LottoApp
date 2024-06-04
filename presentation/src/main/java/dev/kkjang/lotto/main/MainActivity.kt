@@ -30,7 +30,12 @@ class MainActivity : ComponentActivity() {
                 ) {
                     vm.getLotto("getLottoNumber",1000)
 
-                    Log.d("Loggo : ","${vm.getLotto("getLottoNumber",1000)}")
+                    vm.getFbLotto("data")
+                    Log.d("fbLotto : ", "${vm.getFbLotto("data")}")
+                    val fbLottoState = vm.fbResponse.collectAsState().value
+                    getFbLottoState(fbState = fbLottoState)
+
+                    Log.d("getLotto : ","${vm.getLotto("getLottoNumber",1000)}")
                     val lottoState = vm.lottoResponse.collectAsState().value
                     getLottoState(lottoState = lottoState)
 
@@ -42,6 +47,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun getFbLottoState(fbState: MainViewModel.GetFbLottoState) {
+    when(fbState) {
+        is MainViewModel.GetFbLottoState.Init -> {}
+        is MainViewModel.GetFbLottoState.IsLoading -> {}
+        is MainViewModel.GetFbLottoState.Success -> { Log.v("Firebase Success : ", "${fbState.lottoResponse}")}
+        is MainViewModel.GetFbLottoState.Failure -> {}
+    }
+}
 @Composable
 fun getLottoState(lottoState : MainViewModel.GetLottoState) {
     when(lottoState) {

@@ -1,6 +1,7 @@
 package dev.kkjang.lotto
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -8,7 +9,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //여기에 코드 작성
+
+        // Firebase Init
+        FirebaseApp.initializeApp(this@App)
     }
 
 }
