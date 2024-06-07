@@ -231,6 +231,7 @@ object Firebase {
     const val CORE = "com.google.firebase:firebase-core:${Versions.FIREBASE_CORE}"
     const val MESSAGING = "com.google.firebase:firebase-messaging"
     const val DATABASE = "com.google.firebase:firebase-database"
+    const val DATABASE_KTX = "com.google.firebase:firebase-database-ktx"
     const val FIREBASE_ANALYTICS_KTX = "com.google.firebase:firebase-analytics-ktx"
 }
 

@@ -20,7 +20,7 @@
         tools:ignore="ScopedStorage" /> <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" -->
     <!-- tools:ignore="ScopedStorage" /> -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" /> <!-- 수정 필요... -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
@@ -38,6 +38,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lotto"
         tools:targetApi="31">
+        <!--     android:name=".splash.SplashActivity"   -->
         <activity
             android:name=".main.MainActivity"
             android:exported="true"
@@ -49,6 +50,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+<!--        <activity-->
+<!--            android:name=".main.MainActivity"-->
+<!--            android:configChanges="screenSize|smallestScreenSize|screenLayout"-->
+<!--            android:exported="false"-->
+<!--            android:screenOrientation="portrait" />-->
+
     </application>
 
 </manifest>
