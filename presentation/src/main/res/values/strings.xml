@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">lotto</string>
-    <string name="main_title_week_number">이번주 \n 당첨 번호는?</string>
+    <string name="main_title_week_number">이번주 \n당첨 번호는?</string>
+    <string name="main_title_celebration">1등 당첨을 축하합니다 !</string>
+    <string name="main_title_first_title">1등</string>
 </resources>
