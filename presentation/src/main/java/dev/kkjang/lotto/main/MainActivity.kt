@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
@@ -27,13 +28,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -43,6 +48,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import dagger.hilt.android.AndroidEntryPoint
 import dev.kkjang.lotto.R
 import dev.kkjang.lotto.ui.theme.LottoTheme
@@ -52,8 +59,23 @@ class MainActivity : ComponentActivity() {
     private val vm: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
             LottoTheme {
+
+                val backgroundColor = MaterialTheme.colors.background.toArgb()
+
+                // Set the status bar color
+                SideEffect {
+                    val window = window
+                    WindowCompat.setDecorFitsSystemWindows(window, false)
+                    WindowInsetsControllerCompat(window, window.decorView).apply {
+                        isAppearanceLightStatusBars = true // or false depending on your theme
+                    }
+                    window.statusBarColor = backgroundColor
+                }
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -129,18 +151,45 @@ fun TopScreen() {
         Text(
             text = stringResource(id = R.string.main_title_week_number),
             style = TextStyle(
-                fontSize = 20.sp,
+                fontSize = 22.sp,
                 lineHeight = 24.sp,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
                 color = colorResource(id = R.color.black),
                 textAlign = TextAlign.Start
             ),
             modifier = Modifier
                 .wrapContentHeight()
                 .align(Alignment.CenterVertically)
-                .padding(start = 16.dp, top = 24.dp, bottom = 24.dp)
+                .padding(start = 16.dp, top = 44.dp, bottom = 24.dp)
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Shadow() {
+    Column(
+        modifier = Modifier
+            .width(120.dp)
+            .height(120.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Box(
+            modifier = Modifier
+                .shadow(
+                    elevation = 10.dp,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .background(Color.White)
+                .size(110.dp),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Text(text = "Hello World")
+        }
+    }
+
 }
 
 @Preview(showBackground = true)
@@ -154,14 +203,10 @@ fun LottoScreen() {
             .wrapContentHeight()
             .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             .shadow(
-                elevation = 16.dp, // 상단 그림자의 elevation
+                elevation = 3.dp,
                 shape = RoundedCornerShape(16.dp)
             )
-            .shadow(
-                elevation = 50.dp, // 하단 그림자의 elevation
-                shape = RoundedCornerShape(16.dp),
-                clip = false
-            )
+         
             .clip(
                 RoundedCornerShape(
                     topStart = 16.dp,
@@ -171,7 +216,6 @@ fun LottoScreen() {
                 )
             )
             .background(colorResource(id = R.color.bg_lotto_content_layout))
-
     ) {
         Column(
             modifier = Modifier
@@ -191,7 +235,7 @@ fun LottoScreen() {
             )
 
             Text(
-                modifier = Modifier.padding(top = 6.dp),
+                modifier = Modifier.padding(top = 2.dp),
                 text = stringResource(id = R.string.main_title_celebration),
                 style = TextStyle(
                     fontSize = 12.sp,
@@ -351,6 +395,141 @@ fun ContentScreen() {
             .wrapContentHeight()
     ) {
         Column(modifier = Modifier.align(Alignment.CenterVertically)) {
+            /** QR 확인하기 **/
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 16.dp,
+                            topEnd = 16.dp,
+                            bottomStart = 16.dp,
+                            bottomEnd = 16.dp
+                        )
+                    )
+                    .background(colorResource(id = R.color.bg_item_layout))
+
+            ) {
+                Row(
+                    modifier = Modifier.padding(start = 14.dp, top = 14.dp, bottom = 14.dp),
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_x24_qr_icon),
+                        contentDescription = null, // 필수 param
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .align(Alignment.CenterVertically)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .padding(start = 20.dp)
+                            .alignByBaseline(),
+                        text = "QR 확인하기",
+                        color = colorResource(id = R.color.black), // 원하는 색상으로 설정
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            lineHeight = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(id = R.color.white),
+                            textAlign = TextAlign.Start
+                        ),
+                    )
+                }
+            }
+
+            /** 주변 판매점 확인하기 **/
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 16.dp,
+                            topEnd = 16.dp,
+                            bottomStart = 16.dp,
+                            bottomEnd = 16.dp
+                        )
+                    )
+                    .background(colorResource(id = R.color.bg_item_layout))
+
+            ) {
+                Row(
+                    modifier = Modifier.padding(start = 14.dp, top = 14.dp, bottom = 14.dp),
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_x24_pin_icon),
+                        contentDescription = null, // 필수 param
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .align(Alignment.CenterVertically)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .padding(start = 20.dp)
+                            .alignByBaseline(),
+                        text = "주변 판매점 확인하기",
+                        color = colorResource(id = R.color.black), // 원하는 색상으로 설정
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            lineHeight = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(id = R.color.white),
+                            textAlign = TextAlign.Start
+                        ),
+                    )
+                }
+            }
+
+
+            /** 분석하기 **/
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 16.dp,
+                            topEnd = 16.dp,
+                            bottomStart = 16.dp,
+                            bottomEnd = 16.dp
+                        )
+                    )
+                    .background(colorResource(id = R.color.bg_item_layout))
+
+            ) {
+                Row(
+                    modifier = Modifier.padding(start = 14.dp, top = 14.dp, bottom = 14.dp),
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_x24_analysing_icon),
+                        contentDescription = null, // 필수 param
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .align(Alignment.CenterVertically)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .padding(start = 20.dp)
+                            .alignByBaseline(),
+                        text = "분석하기",
+                        color = colorResource(id = R.color.black), // 원하는 색상으로 설정
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            lineHeight = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(id = R.color.white),
+                            textAlign = TextAlign.Start
+                        ),
+                    )
+                }
+            }
+
+
+            /** 내가 만든 번호 **/
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -367,22 +546,24 @@ fun ContentScreen() {
 
             ) {
                 Row(
-                    modifier = Modifier.padding(start = 14.dp, top = 12.dp, bottom = 12.dp),
+                    modifier = Modifier.padding(start = 14.dp, top = 14.dp, bottom = 14.dp),
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.ic_x24_qr_icon),
+                        painter = painterResource(R.drawable.ic_x24_star_icon),
                         contentDescription = null, // 필수 param
-                        modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .align(Alignment.CenterVertically)
                     )
                     Text(
                         modifier = Modifier
                             .wrapContentHeight()
                             .padding(start = 20.dp)
                             .alignByBaseline(),
-                        text = "QR 확인하기",
+                        text = "내가 만든 번호 확인하기",
                         color = colorResource(id = R.color.black), // 원하는 색상으로 설정
                         style = TextStyle(
-                            fontSize = 20.sp,
+                            fontSize = 16.sp,
                             lineHeight = 24.sp,
                             fontWeight = FontWeight.Bold,
                             color = colorResource(id = R.color.white),
@@ -390,8 +571,136 @@ fun ContentScreen() {
                         ),
                     )
                 }
-
             }
+
+
+            Spacer(modifier = Modifier.padding(top = 18.dp))
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+                    .background(color = colorResource(id = R.color.divider_color))
+            )
+
+
+
+            /** 나의 번호 만들기 **/
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 12.dp, bottom = 16.dp, start = 16.dp, end = 16.dp)
+            ) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight(),
+                    text = "나의 번호 만들기",
+                    color = colorResource(id = R.color.black), // 원하는 색상으로 설정
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 24.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = colorResource(id = R.color.white),
+                        textAlign = TextAlign.Start
+                    ),
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(130.dp)
+                        .padding(top = 12.dp)
+                        .clip(
+                            RoundedCornerShape(
+                                topStart = 16.dp,
+                                topEnd = 16.dp,
+                                bottomStart = 16.dp,
+                                bottomEnd = 16.dp
+                            )
+                        )
+                        .background(colorResource(id = R.color.bg_item_layout))
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                            .padding(top = 12.dp, start = 12.dp, bottom = 12.dp)
+                            .clip(
+                                RoundedCornerShape(
+                                    topStart = 16.dp,
+                                    topEnd = 16.dp,
+                                    bottomStart = 16.dp,
+                                    bottomEnd = 16.dp
+                                )
+                            )
+                            .background(Color.White)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_x48_auto_icon), // 이미지 리소스 사용
+                                contentDescription = "Auto",
+                                modifier = Modifier.size(40.dp) // 이미지 크기 조정
+                            )
+                            Spacer(modifier = Modifier.height(8.dp)) // 이미지와 텍스트 사이에 간격 추가
+                            Text(
+                                text = "자동",
+                                color = Color.Black, // 텍스트 색상 설정
+                                style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
+                                textAlign = TextAlign.Center // 텍스트 중앙 정렬
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.width(16.dp))
+
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                            .padding(top = 12.dp, end = 12.dp, bottom = 12.dp)
+                            .clip(
+                                RoundedCornerShape(
+                                    topStart = 16.dp,
+                                    topEnd = 16.dp,
+                                    bottomStart = 16.dp,
+                                    bottomEnd = 16.dp
+                                )
+                            )
+                            .background(Color.White)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_x48_choice_icon), // 이미지 리소스 사용
+                                contentDescription = "Auto",
+                                modifier = Modifier.size(40.dp) // 이미지 크기 조정
+                            )
+                            Spacer(modifier = Modifier.height(8.dp)) // 이미지와 텍스트 사이에 간격 추가
+                            Text(
+                                text = "수동",
+                                color = Color.Black, // 텍스트 색상 설정
+                                style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
+                                textAlign = TextAlign.Center // 텍스트 중앙 정렬
+                            )
+                        }
+                    }
+                }
+            }
+
+
+
         }
     }
 }

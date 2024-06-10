@@ -8,7 +8,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bg_lotto_content_layout">#0D8BE7</color>
+    <color name="divider_color">#EAEAEA</color>
+
+
+    <color name="bg_lotto_content_layout">#F99688</color>
     <color name="lotto_first_place">#E2E527</color>
     <color name="bg_item_layout">#F3F3F3</color>
 </resources>
