@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -48,6 +49,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -189,7 +191,44 @@ fun Shadow() {
             Text(text = "Hello World")
         }
     }
+}
 
+@Preview(showBackground = true)
+@Composable
+fun OverlayBoxes() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .size(280.dp, 380.dp)
+                .align(Alignment.TopCenter)
+                .offset(y = (-12).dp)
+                .background(Color.Green)
+        ) {
+            // 두 번째 박스 내용
+        }
+
+        Box(
+            modifier = Modifier
+                .size(280.dp, 380.dp)
+                .align(Alignment.BottomCenter)
+                .background(Color.Blue)
+        ) {
+            // 세 번째 박스 내용
+        }
+
+        Box(
+            modifier = Modifier
+                .size(300.dp, 400.dp)
+                .background(Color.Red)
+        ) {
+            // 첫 번째 박스 내용
+        }
+    }
 }
 
 @Preview(showBackground = true)
