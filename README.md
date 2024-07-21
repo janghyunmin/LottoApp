@@ -1,7 +1,7 @@
 
 # :technologist: Lotto #토이 프로젝트
 
-<p><a href="https://www.figma.com/design/pzVSNSQWwgPEvYIk9QByXZ/%EB%9D%BC%EC%9D%B4%EC%96%B8's-team-library?node-id=0-1&t=YNbuUIIrf32qoNms-0">Figma 링크</a>
+<p><a href="https://www.figma.com/design/pzVSNSQWwgPEvYIk9QByXZ/%EB%9D%BC%EC%9D%B4%EC%96%B8's-team-library?node-id=0-1&m=dev">Figma 링크</a>
 </p>
 
 > 로또 번호 조회와 함께 나만의 1등 번호를 만들어 보세요.
