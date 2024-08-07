@@ -1,4 +1,4 @@
-package dev.kkjang.data.module
+package dev.kkjang.data.di
 
 import android.content.Context
 import dagger.Module

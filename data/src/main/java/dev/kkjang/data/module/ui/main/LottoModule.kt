@@ -5,8 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.kkjang.data.api.RetrofitService
-import dev.kkjang.data.module.AppModule
-import dev.kkjang.data.module.NetModule
+import dev.kkjang.data.di.AppModule
+import dev.kkjang.data.di.NetModule
 import dev.kkjang.data.repository.LottoRepositoryImpl
 import dev.kkjang.data.repository.local.LottoLocalDataSource
 import dev.kkjang.data.repository.local.LottoLocalDataSourceImpl
